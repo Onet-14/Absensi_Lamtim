@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catatan Kinerja Harian — Penampung Draf e-Kinerja</title>
+<title>Absensi E-Kinerja KPU Lamtim</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -21,15 +21,14 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 ::selection{background:var(--green);color:#fff}
 [hidden]{display:none!important}
 .mono{font-family:var(--mono)}
-.page{max-width:1060px;margin:0 auto}
+.page{max-width:1080px;margin:0 auto}
 
-/* ---------- KOP SURAT ---------- */
 .kop{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
 .kop-tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.22em;
   border:1.5px solid var(--ink);background:var(--card);padding:5px 12px;box-shadow:3px 3px 0 var(--ink);margin-bottom:14px}
-.kop h1{font-size:clamp(30px,5.4vw,50px);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
+.kop h1{font-size:clamp(28px,5vw,46px);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
 .kop h1 em{font-style:normal;color:var(--green)}
-.kop-sub{margin-top:10px;font-size:14px;color:var(--ink-soft);max-width:520px}
+.kop-sub{margin-top:10px;font-size:14px;color:var(--ink-soft);max-width:560px}
 .kop-meta{text-align:right;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
 .kop-form{font-family:var(--mono);font-size:11px;letter-spacing:.18em;border:1.5px solid var(--ink);
   background:var(--green);color:#F4F0E6;padding:4px 10px}
@@ -37,7 +36,6 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 .kop-date{font-size:12.5px;color:var(--ink-soft)}
 .rule-double{margin-top:20px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:6px}
 
-/* ---------- TAB & LEMBAR ---------- */
 .tabs{display:flex;gap:6px;margin-top:26px;position:relative;z-index:2;flex-wrap:wrap}
 .tab{display:flex;align-items:center;gap:9px;font:700 13px var(--sans);letter-spacing:.06em;text-transform:uppercase;
   border:1.5px solid var(--ink);border-bottom:none;background:#EFEADB;color:var(--ink);
@@ -51,7 +49,6 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 .sheet{border:1.5px solid var(--ink);background:var(--sheet);box-shadow:8px 8px 0 rgba(29,27,22,.1);padding:26px;position:relative;z-index:1}
 @media(max-width:640px){.sheet{padding:16px}}
 
-/* ---------- TOMBOL ---------- */
 .btn{display:inline-flex;align-items:center;gap:8px;font:700 13.5px var(--sans);border:1.5px solid var(--ink);
   background:var(--card);color:var(--ink);padding:10px 18px;border-radius:7px;cursor:pointer;
   box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s;user-select:none}
@@ -68,13 +65,12 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 .icon-btn:hover{background:var(--terra);color:#fff}
 .icon-btn svg{width:14px;height:14px}
 
-/* ---------- PANEL ---------- */
 .panel{border:1.5px solid var(--ink);background:var(--card);border-radius:10px;padding:20px 22px;box-shadow:4px 4px 0 var(--ink);margin-bottom:20px}
 .panel-title{display:flex;align-items:center;gap:9px;font:800 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
 .panel-title svg{width:16px;height:16px;color:var(--green)}
 .panel-title .spacer{flex:1;border-top:1px dashed rgba(29,27,22,.35)}
+.panel-title .mono-tag{font:600 11px var(--mono);letter-spacing:0;text-transform:none;color:var(--ink-soft)}
 
-/* ---------- STATISTIK ---------- */
 .statbar{display:flex;flex-wrap:wrap;border:1.5px solid var(--ink);background:var(--card);border-radius:10px;
   box-shadow:4px 4px 0 var(--ink);margin-bottom:20px;overflow:hidden}
 .stat{padding:16px 26px;border-left:1.5px solid var(--ink)}
@@ -85,7 +81,6 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 .stat.hl2 b{color:var(--terra)}
 @media(max-width:640px){.stat{padding:12px 16px}.stat b{font-size:22px}}
 
-/* ---------- KARTU IDENTITAS ---------- */
 .idcard{border:1.5px solid var(--ink);background:var(--green);color:#F4F0E6;border-radius:10px;
   padding:20px 22px;box-shadow:4px 4px 0 var(--ink);margin-bottom:20px;position:relative;overflow:hidden}
 .idcard::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;
@@ -98,13 +93,11 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 .idcard .btn{margin-top:14px;background:transparent;color:#F4F0E6;border-color:#F4F0E6;box-shadow:3px 3px 0 rgba(0,0,0,.25)}
 .idcard .btn:hover{background:rgba(255,255,255,.12);transform:translate(-1px,-1px)}
 
-/* ---------- EMPTY STATE ---------- */
 .empty{border:1.5px dashed var(--ink);border-radius:10px;padding:34px 20px;text-align:center;color:var(--ink-soft);font-size:14px}
 .empty svg{width:34px;height:34px;margin-bottom:10px;color:var(--ink)}
 .empty b{display:block;color:var(--ink);margin-bottom:4px}
 .empty .btn{margin-top:16px}
 
-/* ---------- DAFTAR TERAKHIR ---------- */
 .recent-item{display:flex;gap:16px;align-items:flex-start;padding:13px 2px;border-bottom:1.5px dashed rgba(29,27,22,.28)}
 .recent-item:last-child{border-bottom:none;padding-bottom:2px}
 .recent-date{min-width:46px;text-align:center;border:1.5px solid var(--ink);border-radius:7px;overflow:hidden;background:var(--sheet)}
@@ -113,13 +106,13 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 .recent-body{flex:1;min-width:0}
 .recent-task{font-weight:600;font-size:14.5px}
 .recent-meta{font-size:12px;color:var(--ink-soft);font-family:var(--mono);margin-top:3px}
+.recent-who{font-size:12px;font-weight:600;margin-top:2px}
 
 .badge{display:inline-block;font:700 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;
   border:1.5px solid var(--ink);border-radius:999px;padding:3px 10px;white-space:nowrap}
 .b-traj{background:var(--green-soft);color:var(--green)}
 .b-non{background:var(--terra-soft);color:var(--terra)}
 
-/* ---------- STEPPER ---------- */
 .stepper{display:flex;align-items:stretch;margin-bottom:22px}
 .step{display:flex;align-items:center;gap:11px;border:1.5px solid var(--ink);background:var(--card);padding:10px 18px 10px 12px;border-radius:9px}
 .step-num{width:28px;height:28px;flex:none;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font:600 13px var(--mono)}
@@ -136,7 +129,6 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
 .step.done .num{display:none}
 @media(max-width:640px){.step small{display:none}.step{padding:9px 12px 9px 10px}}
 
-/* ---------- FORM ---------- */
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
 .f-2{grid-column:span 2}.f-3{grid-column:span 3}.f-4{grid-column:span 4}.f-5{grid-column:span 5}
 .f-6{grid-column:span 6}.f-7{grid-column:span 7}.f-8{grid-column:span 8}.f-12{grid-column:span 12}
@@ -148,13 +140,14 @@ input,select,textarea{width:100%;border:1.5px solid var(--ink);background:var(--
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);box-shadow:3px 3px 0 rgba(47,93,62,.22)}
 input[readonly]{background:#EFEADB;color:var(--ink-soft)}
 textarea{min-height:86px;resize:vertical}
+textarea.code{font-family:var(--mono);font-size:12px;min-height:200px;background:#F6F2E7;white-space:pre}
 .hint{font-size:12px;color:var(--ink-soft);margin-top:6px}
+.hint code{font-family:var(--mono);font-size:11.5px;background:#EFEADB;border:1px solid rgba(29,27,22,.2);border-radius:4px;padding:1px 5px}
 .err{border-color:var(--terra)!important;box-shadow:3px 3px 0 var(--terra-soft)!important}
 .form-actions{grid-column:1/-1;display:flex;gap:12px;align-items:center;justify-content:flex-end;flex-wrap:wrap;
   border-top:1.5px dashed rgba(29,27,22,.3);padding-top:18px;margin-top:4px}
 .form-actions .note{margin-right:auto;font-size:12px;color:var(--ink-soft)}
 
-/* ---------- CHIP PEGAWAI ---------- */
 .chip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:1.5px solid var(--ink);
   background:var(--green-soft);border-radius:10px;padding:13px 18px;margin-bottom:20px}
 .chip-line{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
@@ -163,7 +156,10 @@ textarea{min-height:86px;resize:vertical}
 .chip-sub{font-size:12.5px;color:var(--ink-soft)}
 .chip .btn{margin-left:auto}
 
-/* ---------- TOOLBAR & TABEL ---------- */
+.inline-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.inline-row>div{flex:1;min-width:180px}
+.inline-row .fixed{flex:0 0 auto;min-width:0}
+
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
 .toolbar input,.toolbar select{width:auto;min-width:130px;padding:9px 12px;font-size:13.5px}
 .toolbar .search{flex:1 1 220px}
@@ -180,8 +176,27 @@ tbody tr:hover{background:#F3EEDF}
 .td-sub{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
 .td-task{font-weight:600;max-width:340px}
 .td-idx{font-family:var(--mono);color:var(--ink-soft)}
+table.tbl-mini{min-width:0}
+table.tbl-mini th{padding:9px 10px}
+table.tbl-mini td{padding:8px 10px;font-size:13px}
 
-/* ---------- TOAST, STEMPEL, MODAL ---------- */
+.status-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13.5px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.on{background:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+.dot.off{background:var(--terra);box-shadow:0 0 0 3px var(--terra-soft)}
+.dropzone{border:1.5px dashed var(--ink);border-radius:10px;background:var(--sheet);padding:22px;text-align:center;
+  cursor:pointer;transition:.15s}
+.dropzone:hover,.dropzone.drag{background:var(--green-soft)}
+.dropzone svg{width:26px;height:26px;margin-bottom:8px;color:var(--green)}
+.dropzone b{display:block;font-size:14px}
+.dropzone small{color:var(--ink-soft)}
+.steps-list{counter-reset:st;font-size:13.5px}
+.steps-list p{display:flex;gap:10px;margin:8px 0}
+.steps-list p::before{counter-increment:st;content:counter(st);flex:none;width:22px;height:22px;border:1.5px solid var(--ink);
+  border-radius:50%;display:grid;place-items:center;font:600 11.5px var(--mono);margin-top:1px}
+.json-box{border:1.5px solid var(--ink);border-radius:8px;background:#F6F2E7;max-height:260px;overflow:auto;padding:12px}
+.json-box pre{font-family:var(--mono);font-size:11.5px;white-space:pre}
+
 .toast{position:fixed;right:22px;bottom:22px;z-index:120;display:flex;align-items:center;gap:10px;
   background:var(--ink);color:#F4F0E6;padding:13px 18px;border-radius:9px;font-size:14px;font-weight:600;
   box-shadow:4px 4px 0 rgba(29,27,22,.25);transform:translateY(140%);
@@ -226,26 +241,25 @@ footer .mono{font-size:11px}
 <body>
 <div class="page">
 
-  <!-- ================= KOP ================= -->
   <header class="kop">
     <div>
-      <span class="kop-tag" id="kopInstansi">INSTANSI / UNIT KERJA</span>
-      <h1>CATATAN KINERJA<br><em>HARIAN</em></h1>
-      <p class="kop-sub">Media penampungan sementara hasil kerja harian — draf pengingat sebelum disalin ke e-Kinerja BKN.</p>
+      <span class="kop-tag">KPU KABUPATEN LAMBANU MANGARATIM</span>
+      <h1>ABSENSI <em>E-KINERJA</em></h1>
+      <p class="kop-sub">Pengisian hasil kerja harian ASN — pilih nama, sisanya terisi otomatis. Draf sebelum disalin ke e-Kinerja BKN.</p>
     </div>
     <div class="kop-meta">
-      <span class="kop-form">FORM · CKH-01</span>
+      <span class="kop-form">FORM · CKH-02</span>
       <span class="kop-clock" id="jamLive">--.--.--</span>
       <span class="kop-date" id="tglLive">—</span>
     </div>
   </header>
   <div class="rule-double"></div>
 
-  <!-- ================= TAB ================= -->
   <nav class="tabs">
     <button class="tab active" data-tab="dashboard"><i data-lucide="layout-dashboard"></i><span class="tab-no">01</span> Dashboard</button>
     <button class="tab" data-tab="absensi"><i data-lucide="clipboard-list"></i><span class="tab-no">02</span> Absensi</button>
     <button class="tab" data-tab="info"><i data-lucide="table"></i><span class="tab-no">03</span> Info Absensi</button>
+    <button class="tab" data-tab="kelola"><i data-lucide="database"></i><span class="tab-no">04</span> Kelola Data</button>
   </nav>
 
   <div class="sheet">
@@ -271,7 +285,7 @@ footer .mono{font-size:11px}
         <div class="stepper">
           <div class="step active" id="step1">
             <span class="step-num"><span class="num">1</span><i data-lucide="check" class="chk"></i></span>
-            <div><b>Data Pegawai</b><small>Identitas pelapor</small></div>
+            <div><b>Data Pegawai</b><small>Pilih nama — otomatis terisi</small></div>
           </div>
           <div class="step-line"></div>
           <div class="step" id="step2">
@@ -280,32 +294,41 @@ footer .mono{font-size:11px}
           </div>
         </div>
 
-        <!-- Langkah 1 : data pegawai -->
+        <!-- Langkah 1 -->
         <div class="panel" id="panelPegawai">
-          <div class="panel-title"><i data-lucide="user"></i> Data Pegawai</div>
+          <div class="panel-title"><i data-lucide="user"></i> Data Pegawai
+            <span class="spacer"></span><span class="mono-tag" id="pegawaiCountTag"></span>
+          </div>
           <form id="formPegawai" class="grid" novalidate autocomplete="off">
-            <div class="f-5"><label for="inNama">Nama Pegawai</label><input id="inNama" placeholder="Nama lengkap"></div>
-            <div class="f-3"><label for="inNip">NIP</label><input id="inNip" class="mono" inputmode="numeric" maxlength="18" placeholder="18 digit"></div>
-            <div class="f-4"><label for="inJabatan">Jabatan</label><input id="inJabatan" placeholder="cth: Staf Administrasi"></div>
-            <div class="f-6"><label for="inSubbag">Subbagian / Subbag</label><input id="inSubbag" placeholder="cth: Subbag Keuangan"></div>
-            <div class="f-6"><label for="inDivisi">Divisi</label><input id="inDivisi" placeholder="cth: Sekretariat Daerah"></div>
+            <div class="f-6"><label for="selPegawai">Pilih Nama Pegawai</label>
+              <select id="selPegawai"></select>
+              <p class="hint">Nama belum terdaftar? Pilih <b>“Isi manual”</b> di baris terakhir.</p>
+            </div>
+            <div class="f-6" id="autoNote" hidden><label>&nbsp;</label>
+              <div class="hint" style="margin-top:10px"><i data-lucide="sparkles" style="width:13px;height:13px;vertical-align:-2px;color:var(--green)"></i>
+              NIP, jabatan, subbag &amp; divisi terisi otomatis dari data pegawai.</div>
+            </div>
+            <div class="f-5"><label for="fNama">Nama Pegawai</label><input id="fNama" placeholder="Nama lengkap"></div>
+            <div class="f-3"><label for="fNip">NIP</label><input id="fNip" class="mono" inputmode="numeric" maxlength="18" placeholder="18 digit"></div>
+            <div class="f-4"><label for="fJab">Jabatan</label><input id="fJab" placeholder="cth: Staf Administrasi"></div>
+            <div class="f-6"><label for="fSub">Subbagian / Subbag</label><input id="fSub" placeholder="cth: Subbag Keuangan"></div>
+            <div class="f-6"><label for="fDiv">Divisi</label><input id="fDiv" placeholder="cth: Bidang SIAKBA"></div>
             <div class="form-actions">
-              <span class="note">Disimpan di perangkat ini agar tidak perlu diisi ulang.</span>
+              <span class="note">Data pegawai dikelola di menu <b>Kelola Data</b>.</span>
               <button type="submit" class="btn btn-primary">Lanjut <i data-lucide="arrow-right"></i></button>
             </div>
           </form>
         </div>
 
-        <!-- Ringkasan pegawai setelah "Lanjut" -->
         <div class="chip" id="pegawaiChip" hidden>
           <div>
             <div class="chip-line"><b id="chipNama"></b><span class="chip-nip" id="chipNip"></span></div>
             <div class="chip-sub" id="chipRole"></div>
           </div>
-          <button class="btn btn-sm" id="btnUbahPegawai"><i data-lucide="pencil"></i> Ubah</button>
+          <button class="btn btn-sm" id="btnUbahPegawai"><i data-lucide="repeat"></i> Ganti Pegawai</button>
         </div>
 
-        <!-- Langkah 2 : aktivitas harian -->
+        <!-- Langkah 2 -->
         <div class="panel" id="panelHarian" hidden>
           <div class="panel-title"><i data-lucide="calendar"></i> Aktivitas Harian</div>
           <form id="formHarian" class="grid" novalidate autocomplete="off">
@@ -313,29 +336,43 @@ footer .mono{font-size:11px}
             <div class="f-2"><label for="inHari">Hari</label><input id="inHari" readonly value="—"></div>
             <div class="f-3"><label for="inJamMulai">Jam</label><select id="inJamMulai"></select></div>
             <div class="f-3"><label for="inJamSelesai">s.d. <span class="opt">(opsional)</span></label><select id="inJamSelesai"></select></div>
-            <div class="f-6"><label for="inTupoksi">Tupoksi Pekerjaan</label>
-              <input id="inTupoksi" list="dlTupoksi" placeholder="Pilih saran atau tulis sendiri">
-              <datalist id="dlTupoksi">
-                <option value="Pelayanan Administrasi Perkantoran"></option>
-                <option value="Penyusunan Laporan dan Dokumen"></option>
-                <option value="Rapat, Koordinasi, dan Konsultasi"></option>
-                <option value="Pendataan dan Evaluasi"></option>
-                <option value="Pengelolaan Arsip dan Persuratan"></option>
-                <option value="Pelayanan Publik"></option>
-              </datalist>
+
+            <div class="f-6">
+              <label for="selTupoksi">Tupoksi Pekerjaan</label>
+              <div class="inline-row">
+                <div id="wrapSelTupoksi"><select id="selTupoksi"></select></div>
+                <div id="wrapTxtTupoksi" hidden><input id="txtTupoksi" placeholder="Ketik tupoksi…"></div>
+                <div class="fixed"><button type="button" class="btn btn-sm btn-ghost" id="btnModeTupoksi"><i data-lucide="pencil"></i> Manual</button></div>
+              </div>
             </div>
-            <div class="f-6"><label for="inRHK">Rencana Hasil Kerja</label><input id="inRHK" placeholder="cth: Laporan bulanan triwulan I"></div>
-            <div class="f-12"><label for="inTugas">Tugas Harian</label><textarea id="inTugas" placeholder="Uraikan pekerjaan yang dikerjakan hari ini..."></textarea></div>
+            <div class="f-6">
+              <label for="selRHK">Rencana Hasil Kerja</label>
+              <div class="inline-row">
+                <div id="wrapSelRHK"><select id="selRHK"></select></div>
+                <div id="wrapTxtRHK" hidden><input id="txtRHK" placeholder="Ketik RHK…"></div>
+                <div class="fixed"><button type="button" class="btn btn-sm btn-ghost" id="btnModeRHK"><i data-lucide="pencil"></i> Manual</button></div>
+              </div>
+              <p class="hint">Pilihan RHK menyesuaikan tupoksi di atas.</p>
+            </div>
+            <div class="f-12">
+              <label for="selTugas">Tugas Harian</label>
+              <div class="inline-row">
+                <div id="wrapSelTugas"><select id="selTugas"></select></div>
+                <div id="wrapTxtTugas" hidden><input id="txtTugas" placeholder="Ketik tugas harian…"></div>
+                <div class="fixed"><button type="button" class="btn btn-sm btn-ghost" id="btnModeTugas"><i data-lucide="pencil"></i> Ketik manual</button></div>
+              </div>
+              <p class="hint">Pilihan tugas menyesuaikan RHK. Untuk pekerjaan di luar daftar, gunakan <b>Ketik manual</b>.</p>
+            </div>
+
             <div class="f-4"><label for="inKategori">Jenis Kategori</label>
               <select id="inKategori">
                 <option value="trajectory">Trajectory</option>
                 <option value="non">Non-Trajectory</option>
               </select>
-              <p class="hint">Trajectory = bersumber dari rencana hasil kerja. Non-Trajectory = pekerjaan mendadak di luar rencana.</p>
             </div>
             <div class="f-8"><label for="inRealisasi">Realisasi</label>
               <input id="inRealisasi" placeholder="cth: 2 dokumen laporan terselesaikan">
-              <p class="hint">Tuliskan kuantitas / output yang dicapai.</p>
+              <p class="hint">Kuantitas / output yang dicapai.</p>
             </div>
             <div class="f-12"><label for="inKet">Keterangan <span class="opt">(opsional)</span></label>
               <input id="inKet" placeholder="Catatan tambahan, hambatan, atau tindak lanjut"></div>
@@ -351,7 +388,8 @@ footer .mono{font-size:11px}
       <!-- ================= INFO ABSENSI ================= -->
       <section id="sec-info" class="sec" hidden>
         <div class="toolbar">
-          <input type="search" id="fSearch" class="search" placeholder="Cari tugas, tupoksi, RHK, nama pegawai...">
+          <input type="search" id="fSearch" class="search" placeholder="Cari tugas, tupoksi, RHK...">
+          <select id="fPegawai"><option value="">Semua pegawai</option></select>
           <select id="fKategori">
             <option value="">Semua kategori</option>
             <option value="trajectory">Trajectory</option>
@@ -371,6 +409,7 @@ footer .mono{font-size:11px}
               <thead><tr>
                 <th style="width:44px">No</th>
                 <th style="width:130px">Tanggal</th>
+                <th>Pegawai</th>
                 <th>Tugas Harian</th>
                 <th style="width:132px">Kategori</th>
                 <th style="width:180px">Realisasi</th>
@@ -387,20 +426,84 @@ footer .mono{font-size:11px}
         </div>
       </section>
 
+      <!-- ================= KELOLA DATA ================= -->
+      <section id="sec-kelola" class="sec" hidden>
+
+        <div class="panel">
+          <div class="panel-title"><i data-lucide="radio"></i> Sumber Data Saat Ini <span class="spacer"></span></div>
+          <div class="status-line" id="srcStatus"></div>
+          <p class="hint" style="margin-top:10px">Sumber <b>Repo (data.json)</b> = semua pegawai otomatis mendapat data. Sumber <b>Browser ini</b> = hanya berlaku di perangkat ini.</p>
+        </div>
+
+        <!-- UPLOAD PEGAWAI -->
+        <div class="panel">
+          <div class="panel-title"><i data-lucide="users"></i> Upload Data Pegawai
+            <span class="spacer"></span>
+            <button class="btn btn-sm" id="btnTplPegawai"><i data-lucide="file-down"></i> Template CSV</button>
+          </div>
+          <div class="dropzone" id="dzPegawai">
+            <i data-lucide="file-up"></i>
+            <b>Klik atau seret file CSV pegawai ke sini</b>
+            <small>Kolom: nama; nip; jabatan; subbag; divisi — atau tempel dari Excel</small>
+          </div>
+          <input type="file" id="filePegawai" accept=".csv,.txt" hidden>
+          <textarea id="pastePegawai" class="code" hidden placeholder="Atau tempel isi CSV di sini..."></textarea>
+          <div id="prevPegawai" hidden></div>
+          <div class="form-actions">
+            <span class="note" id="cntPegawai"></span>
+            <button class="btn btn-ghost btn-sm" id="btnEditPegawai"><i data-lucide="pencil"></i> Tempel Manual</button>
+            <button class="btn btn-primary" id="btnApplyPegawai" hidden><i data-lucide="check"></i> Terapkan Data Pegawai</button>
+          </div>
+        </div>
+
+        <!-- UPLOAD PEKERJAAN -->
+        <div class="panel">
+          <div class="panel-title"><i data-lucide="briefcase"></i> Upload Data Pekerjaan Harian
+            <span class="spacer"></span>
+            <button class="btn btn-sm" id="btnTplPekerjaan"><i data-lucide="file-down"></i> Template CSV</button>
+          </div>
+          <div class="dropzone" id="dzPekerjaan">
+            <i data-lucide="file-up"></i>
+            <b>Klik atau seret file CSV pekerjaan ke sini</b>
+            <small>Kolom: tupoksi; rhk; tugas — satu baris per tugas, RHK yang sama otomatis digabung</small>
+          </div>
+          <input type="file" id="filePekerjaan" accept=".csv,.txt" hidden>
+          <textarea id="pastePekerjaan" class="code" hidden placeholder="Atau tempel isi CSV di sini..."></textarea>
+          <div id="prevPekerjaan" hidden></div>
+          <div class="form-actions">
+            <span class="note" id="cntPekerjaan"></span>
+            <button class="btn btn-ghost btn-sm" id="btnEditPekerjaan"><i data-lucide="pencil"></i> Tempel Manual</button>
+            <button class="btn btn-primary" id="btnApplyPekerjaan" hidden><i data-lucide="check"></i> Terapkan Data Pekerjaan</button>
+          </div>
+        </div>
+
+        <!-- PASANG KE REPO -->
+        <div class="panel">
+          <div class="panel-title"><i data-lucide="cloud-upload"></i> Pasang ke Repo (Terpusat untuk Semua Pegawai)</div>
+          <div class="steps-list">
+            <p>Setelah data di atas diterapkan, salin JSON di bawah, lalu buka repo GitHub → <b>Add file → Create new file</b> → beri nama <code>data.json</code> (atau edit file yang sudah ada dengan ikon pensil).</p>
+            <p>Tempel JSON, klik <b>Commit changes</b>. Dalam 1–2 menit semua pegawai otomatis mendapat data terbaru.</p>
+          </div>
+          <div class="json-box" id="jsonOut"><pre>— belum ada data —</pre></div>
+          <div class="form-actions" style="border-top:none;padding-top:12px">
+            <span class="note">Tips: update berkala cukup edit <code>data.json</code> di GitHub, tanpa menyentuh kode.</span>
+            <button class="btn btn-primary" id="btnCopyJson"><i data-lucide="copy"></i> Salin JSON</button>
+          </div>
+        </div>
+
+      </section>
+
     </main>
   </div>
 
   <footer>
-    <p>Data disimpan lokal di browser (localStorage) — bersifat sementara &amp; tidak terkirim ke server mana pun.</p>
-    <p class="mono">Draf pengingat pengisian e-Kinerja BKN · ekinerja.bkn.go.id</p>
+    <p>Catatan harian tersimpan lokal di browser ini — salin ke e-Kinerja BKN untuk pelaporan resmi.</p>
+    <p class="mono">KPU Lambanu Mangaratim · ekinerja.bkn.go.id</p>
   </footer>
 </div>
 
-<!-- Stempel "TERCATAT" -->
 <div class="stamp" id="stamp"><i data-lucide="check"></i> Tercatat</div>
-<!-- Toast notifikasi -->
 <div class="toast" id="toast"></div>
-<!-- Modal konfirmasi -->
 <div class="modal-back" id="modalBack" hidden>
   <div class="modal">
     <h3><i data-lucide="trash-2"></i> <span id="modalTitle"></span></h3>
@@ -413,19 +516,14 @@ footer .mono{font-size:11px}
 </div>
 
 <script>
-/* ================== UTIL & PENYIMPANAN ================== */
+/* ================== UTIL ================== */
 const HARI=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
 const BULAN=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 const BULAN_S=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-const LS_P='ckh_pegawai', LS_E='ckh_entries';
+const LS_ENTRIES='ckh_entries', LS_MASTER='ckh_master', LS_LAST='ckh_lastpegawai';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const refreshIcons=()=>{ if(window.lucide) lucide.createIcons(); };
-
-const getPegawai=()=>{try{return JSON.parse(localStorage.getItem(LS_P))||null}catch(_){return null}};
-const setPegawai=p=>localStorage.setItem(LS_P,JSON.stringify(p));
-const getEntries=()=>{try{return JSON.parse(localStorage.getItem(LS_E))||[]}catch(_){return[]}};
-const saveEntries=a=>localStorage.setItem(LS_E,JSON.stringify(a));
 
 function todayISO(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function parseISO(iso){const[y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d);}
@@ -433,7 +531,73 @@ function namaHari(iso){return HARI[parseISO(iso).getDay()];}
 function fmtFull(iso){const d=parseISO(iso);return namaHari(iso)+', '+d.getDate()+' '+BULAN[d.getMonth()]+' '+d.getFullYear();}
 function fmtShort(iso){const d=parseISO(iso);return d.getDate()+' '+BULAN_S[d.getMonth()]+' '+d.getFullYear();}
 
-/* ================== JAM OTOMATIS (07.30 – 16.30, tiap 30 menit) ================== */
+/* ================== MASTER DATA ================== */
+let MASTER={pegawai:[],pekerjaan:[]};
+let masterSource='browser'; // 'repo' | 'browser'
+
+async function initMaster(){
+  try{
+    const r=await fetch('data.json',{cache:'no-store'});
+    if(r.ok){
+      const j=await r.json();
+      if(Array.isArray(j.pegawai)||Array.isArray(j.pekerjaan)){
+        MASTER={
+          pegawai:(j.pegawai||[]).map(p=>({nama:String(p.nama||''),nip:String(p.nip||''),jabatan:String(p.jabatan||''),subbag:String(p.subbag||''),divisi:String(p.divisi||'')})),
+          pekerjaan:(j.pekerjaan||[]).map(p=>({tupoksi:String(p.tupoksi||''),rhk:String(p.rhk||''),tugas:(Array.isArray(p.tugas)?p.tugas:[p.tugas].filter(Boolean)).map(String)}))
+        };
+        localStorage.setItem(LS_MASTER,JSON.stringify(MASTER));
+        masterSource='repo';
+        return;
+      }
+    }
+  }catch(e){}
+  try{MASTER=JSON.parse(localStorage.getItem(LS_MASTER))||{pegawai:[],pekerjaan:[]};}catch(_){MASTER={pegawai:[],pekerjaan:[]};}
+  masterSource='browser';
+}
+function saveMasterLocal(){
+  localStorage.setItem(LS_MASTER,JSON.stringify(MASTER));
+  masterSource='browser';
+}
+
+/* ================== PARSER CSV (deteksi tab / ; / , + quote) ================== */
+function smartParse(text){
+  text=String(text||'').trim();
+  if(!text)return[];
+  const first=text.split(/\r?\n/)[0];
+  const delim=first.includes('\t')?'\t':(first.includes(';')?';':',');
+  const lines=text.split(/\r?\n/).filter(l=>l.trim());
+  const rows=lines.map(line=>{
+    const out=[];let cur='',inQ=false;
+    for(let i=0;i<line.length;i++){
+      const c=line[i];
+      if(c==='"'){if(inQ&&line[i+1]==='"'){cur+='"';i++;}else inQ=!inQ;}
+      else if(c===delim&&!inQ){out.push(cur);cur='';}
+      else cur+=c;
+    }
+    out.push(cur);
+    return out.map(s=>s.trim());
+  });
+  const header=/^(nama|nip|jabatan|subbag|divisi|tupoksi|rhk|rencana|tugas)/i;
+  if(rows.length&&header.test((rows[0][0]||'')))rows.shift();
+  return rows;
+}
+function rowsToPegawai(rows){
+  return rows.map(r=>({nama:r[0]||'',nip:(r[1]||'').replace(/\D/g,''),jabatan:r[2]||'',subbag:r[3]||'',divisi:r[4]||''}))
+    .filter(p=>p.nama&&p.nip);
+}
+function rowsToPekerjaan(rows){
+  const map=new Map();
+  rows.forEach(r=>{
+    const tup=r[0]||'',rhk=r[1]||'',tugas=r[2]||'';
+    if(!tup||!rhk)return;
+    const key=tup+'||'+rhk;
+    if(!map.has(key))map.set(key,{tupoksi:tup,rhk:rhk,tugas:[]});
+    if(tugas&&!map.get(key).tugas.includes(tugas))map.get(key).tugas.push(tugas);
+  });
+  return[...map.values()];
+}
+
+/* ================== JAM ================== */
 function slotJam(){const a=[];for(let m=450;m<=990;m+=30)a.push(String(Math.floor(m/60)).padStart(2,'0')+'.'+String(m%60).padStart(2,'0'));return a;}
 function buildJam(){
   const slots=slotJam();
@@ -442,35 +606,35 @@ function buildJam(){
 }
 const jamToMin=s=>{const[h,m]=s.split('.').map(Number);return h*60+m;};
 function defaultJam(){
-  const slots=slotJam(), mins=slots.map(jamToMin);
+  const slots=slotJam(),mins=slots.map(jamToMin);
   let chosen='08.00';
   if($('#inTanggal').value===todayISO()){
-    const n=new Date(), cur=n.getHours()*60+n.getMinutes();
-    const idx=mins.reduce((acc,v,i)=>v<=cur?i:acc,-1);
+    const n=new Date(),cur=n.getHours()*60+n.getMinutes();
+    const idx=mins.reduce((a,v,i)=>v<=cur?i:a,-1);
     if(idx>=0)chosen=slots[idx];
   }
   $('#inJamMulai').value=chosen;
   $('#inJamSelesai').value=slots[Math.min(slots.indexOf(chosen)+1,slots.length-1)];
 }
 
-/* ================== JAM & TANGGAL BERJALAN (kop) ================== */
 function tick(){
   const n=new Date(),p=v=>String(v).padStart(2,'0');
   $('#jamLive').textContent=p(n.getHours())+'.'+p(n.getMinutes())+'.'+p(n.getSeconds());
   $('#tglLive').textContent=HARI[n.getDay()]+', '+n.getDate()+' '+BULAN[n.getMonth()]+' '+n.getFullYear();
 }
 
-/* ================== NAVIGASI TAB ================== */
+/* ================== TAB ================== */
 function showTab(name){
   $$('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
-  ['dashboard','absensi','info'].forEach(t=>{$('#sec-'+t).hidden=(t!==name);});
+  ['dashboard','absensi','info','kelola'].forEach(t=>{$('#sec-'+t).hidden=(t!==name);});
   const sec=$('#sec-'+name);
   sec.classList.remove('sec');void sec.offsetWidth;sec.classList.add('sec');
   if(name==='dashboard')renderDashboard();
   if(name==='info')renderInfo();
+  if(name==='kelola')renderKelola();
 }
 
-/* ================== TOAST & MODAL KONFIRMASI ================== */
+/* ================== TOAST & MODAL ================== */
 let toastTimer;
 function showToast(msg,ok=true){
   const t=$('#toast');
@@ -480,28 +644,69 @@ function showToast(msg,ok=true){
   clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
 }
 let confirmCb=null;
-function openConfirm(title,msg,cb){
-  $('#modalTitle').textContent=title;$('#modalMsg').textContent=msg;
-  confirmCb=cb;$('#modalBack').hidden=false;
-}
+function openConfirm(title,msg,cb){$('#modalTitle').textContent=title;$('#modalMsg').textContent=msg;confirmCb=cb;$('#modalBack').hidden=false;}
 function closeConfirm(){$('#modalBack').hidden=true;confirmCb=null;}
  $('#modalNo').onclick=closeConfirm;
  $('#modalBack').addEventListener('click',e=>{if(e.target===e.currentTarget)closeConfirm();});
  $('#modalYes').onclick=()=>{const cb=confirmCb;closeConfirm();cb&&cb();};
 
-/* ================== DATA PEGAWAI (langkah 1) ================== */
-const F={nama:$('#inNama'),nip:$('#inNip'),jab:$('#inJabatan'),sub:$('#inSubbag'),div:$('#inDivisi')};
-function updateKop(){
-  const p=getPegawai();
-  const unit=p?[(p.subbag||'').toUpperCase(),(p.divisi||'').toUpperCase()].filter(Boolean).join(' · '):'';
-  $('#kopInstansi').textContent=unit||'INSTANSI / UNIT KERJA';
+/* ================== STEP 1 : PILIH PEGAWAI ================== */
+const FP={nama:$('#fNama'),nip:$('#fNip'),jab:$('#fJab'),sub:$('#fSub'),div:$('#fDiv')};
+let currentPegawai=null;
+
+function fillSelPegawai(){
+  const sel=$('#selPegawai'),last=lastPegawai();
+  const names=MASTER.pegawai.map(p=>p.nama).sort((a,b)=>a.localeCompare(b,'id'));
+  sel.innerHTML='<option value="">— Pilih nama pegawai —</option>'+
+    names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join('')+
+    '<option value="__manual">✍️ Isi manual (di luar daftar)</option>';
+  if(last&&names.includes(last.nama))sel.value=last.nama;
 }
-function prefPegawai(){
-  const p=getPegawai();if(!p)return;
-  F.nama.value=p.nama||'';F.nip.value=p.nip||'';F.jab.value=p.jabatan||'';F.sub.value=p.subbag||'';F.div.value=p.divisi||'';
+function setManualPegawai(manual){
+  ['fNama','fNip','fJab','fSub','fDiv'].forEach(id=>$('#'+id).readOnly=!manual);
+  $('#autoNote').hidden=!manual?false:true;
+  $('#autoNote').hidden=manual; // tampil hanya saat auto
+  refreshIcons();
 }
+ $('#selPegawai').addEventListener('change',()=>{
+  const v=$('#selPegawai').value;
+  if(v==='__manual'){
+    setManualPegawai(true);
+    FP.nama.value='';FP.nip.value='';FP.jab.value='';FP.sub.value='';FP.div.value='';
+    FP.nama.focus();
+  }else if(v){
+    setManualPegawai(false);
+    const p=MASTER.pegawai.find(x=>x.nama===v);
+    FP.nama.value=p?p.nama:'';FP.nip.value=p?p.nip:'';FP.jab.value=p?p.jabatan:'';
+    FP.sub.value=p?p.subbag:'';FP.div.value=p?p.divisi:'';
+  }else{
+    setManualPegawai(false);
+    [FP.nama,FP.nip,FP.jab,FP.sub,FP.div].forEach(el=>el.value='');
+  }
+});
+FP.nip.addEventListener('input',()=>{FP.nip.value=FP.nip.value.replace(/\D/g,'').slice(0,18);});
+ $$('#formPegawai input').forEach(el=>el.addEventListener('input',()=>el.classList.remove('err')));
+
+ $('#formPegawai').addEventListener('submit',e=>{
+  e.preventDefault();
+  const isManual=$('#selPegawai').value==='__manual';
+  let ok=true;
+  [FP.nama,FP.nip,FP.jab].forEach(el=>{el.classList.remove('err');if(!el.value.trim()){el.classList.add('err');ok=false;}});
+  if(!ok){showToast('Lengkapi nama, NIP, dan jabatan dulu ya.',false);return;}
+  const nip=FP.nip.value.replace(/\D/g,'');
+  if(nip.length!==18){FP.nip.classList.add('err');showToast('NIP harus tepat 18 digit angka.',false);return;}
+  currentPegawai={nama:FP.nama.value.trim(),nip,jabatan:FP.jab.value.trim(),subbag:FP.sub.value.trim(),divisi:FP.div.value.trim()};
+  localStorage.setItem(LS_LAST,JSON.stringify(currentPegawai));
+  stepDone();
+  showToast('Pegawai: '+currentPegawai.nama);
+});
+
+function lastPegawai(){try{return JSON.parse(localStorage.getItem(LS_LAST))||null}catch(_){return null}}
+
 function stepDone(scroll=true){
-  const p=getPegawai();if(!p)return;
+  const p=currentPegawai||lastPegawai();
+  if(!p){openPegawaiPanel();return;}
+  currentPegawai=p;
   $('#chipNama').textContent=p.nama;
   $('#chipNip').textContent='NIP '+p.nip;
   $('#chipRole').textContent=[p.jabatan,p.subbag,p.divisi].filter(Boolean).join(' · ');
@@ -510,36 +715,80 @@ function stepDone(scroll=true){
   $('#panelHarian').hidden=false;
   $('#step1').classList.add('done');$('#step1').classList.remove('active');
   $('#step2').classList.add('active');
-  updateKop();renderDashboard();
+  renderDashboard();
   if(scroll)$('#panelHarian').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function openPegawaiPanel(){
-  prefPegawai();
+  fillSelPegawai();
+  const p=currentPegawai||lastPegawai();
+  const inMaster=p&&MASTER.pegawai.some(x=>x.nama===p.nama);
+  if(p&&inMaster){
+    $('#selPegawai').value=p.nama;
+    $('#selPegawai').dispatchEvent(new Event('change'));
+  }else if(p){
+    $('#selPegawai').value='__manual';
+    $('#selPegawai').dispatchEvent(new Event('change'));
+    FP.nama.value=p.nama;FP.nip.value=p.nip;FP.jab.value=p.jabatan||'';FP.sub.value=p.subbag||'';FP.div.value=p.divisi||'';
+  }else{
+    $('#selPegawai').value='';
+    setManualPegawai(false);
+    [FP.nama,FP.nip,FP.jab,FP.sub,FP.div].forEach(el=>el.value='');
+  }
   $('#panelPegawai').hidden=false;
   $('#pegawaiChip').hidden=true;
   $('#panelHarian').hidden=true;
   $('#step1').classList.remove('done');$('#step1').classList.add('active');
   $('#step2').classList.remove('active');
-  setTimeout(()=>F.nama.focus(),80);
 }
  $('#btnUbahPegawai').onclick=openPegawaiPanel;
 
-F.nip.addEventListener('input',()=>{F.nip.value=F.nip.value.replace(/\D/g,'').slice(0,18);});
- $$('#formPegawai input').forEach(el=>el.addEventListener('input',()=>el.classList.remove('err')));
+/* ================== STEP 2 : CASCADE TUPOKSI → RHK → TUGAS ================== */
+const mState={tupoksi:false,rhk:false,tugas:false};
+const MODE={
+  tupoksi:{sel:$('#selTupoksi'),txt:$('#txtTupoksi'),wrapS:$('#wrapSelTupoksi'),wrapT:$('#wrapTxtTupoksi'),btn:$('#btnModeTupoksi')},
+  rhk:{sel:$('#selRHK'),txt:$('#txtRHK'),wrapS:$('#wrapSelRHK'),wrapT:$('#wrapTxtRHK'),btn:$('#btnModeRHK')},
+  tugas:{sel:$('#selTugas'),txt:$('#txtTugas'),wrapS:$('#wrapSelTugas'),wrapT:$('#wrapTxtTugas'),btn:$('#btnModeTugas')}
+};
+function setMode(key,manual){
+  mState[key]=manual;
+  const m=MODE[key];
+  m.wrapS.hidden=manual;m.wrapT.hidden=!manual;
+  m.btn.innerHTML=manual?'<i data-lucide="list"></i> Dari daftar':'<i data-lucide="pencil"></i> Ketik manual';
+  refreshIcons();
+}
+function hasOptions(key){
+  const m=MODE[key];
+  return m.sel.options.length>(key==='tugas'?1:2); // lebih dari placeholder saja
+}
+function fillTupoksiOptions(){
+  const set=[...new Set(MASTER.pekerjaan.map(p=>p.tupoksi))].sort((a,b)=>a.localeCompare(b,'id'));
+  MODE.tupoksi.sel.innerHTML='<option value="">— Pilih tupoksi —</option>'+set.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
+  if(!set.length)setMode('tupoksi',true);
+}
+function fillRHKOptions(){
+  const t=MODE.tupoksi.sel.value;
+  const rhks=[...new Set(MASTER.pekerjaan.filter(p=>p.tupoksi===t).map(p=>p.rhk))].sort((a,b)=>a.localeCompare(b,'id'));
+  MODE.rhk.sel.innerHTML='<option value="">— Pilih RHK —</option>'+rhks.map(r=>`<option value="${esc(r)}">${esc(r)}</option>`).join('');
+  if(!rhks.length)setMode('rhk',true);else if(hasOptions('rhk'))setMode('rhk',false);
+  fillTugasOptions();
+}
+function fillTugasOptions(){
+  const t=MODE.tupoksi.sel.value,r=MODE.rhk.sel.value;
+  const row=MASTER.pekerjaan.find(p=>p.tupoksi===t&&p.rhk===r);
+  const tugas=row?row.tugas:[];
+  MODE.tugas.sel.innerHTML='<option value="">— Pilih tugas harian —</option>'+tugas.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');
+  if(!tugas.length)setMode('tugas',true);else if(hasOptions('tugas'))setMode('tugas',false);
+}
+MODE.tupoksi.sel.addEventListener('change',()=>{if(!mState.tupoksi){MODE.rhk.sel.value='';fillRHKOptions();}});
+MODE.rhk.sel.addEventListener('change',()=>{if(!mState.rhk)fillTugasOptions();});
+ $('#btnModeTupoksi').onclick=()=>setMode('tupoksi',!mState.tupoksi);
+ $('#btnModeRHK').onclick=()=>setMode('rhk',!mState.rhk);
+ $('#btnModeTugas').onclick=()=>setMode('tugas',!mState.tugas);
 
- $('#formPegawai').addEventListener('submit',e=>{
-  e.preventDefault();
-  let ok=true;
-  [F.nama,F.nip,F.jab].forEach(el=>{el.classList.remove('err');if(!el.value.trim()){el.classList.add('err');ok=false;}});
-  if(!ok){showToast('Lengkapi nama, NIP, dan jabatan dulu ya.',false);return;}
-  const nip=F.nip.value.replace(/\D/g,'');
-  if(nip.length!==18){F.nip.classList.add('err');showToast('NIP harus tepat 18 digit angka.',false);return;}
-  setPegawai({nama:F.nama.value.trim(),nip,jabatan:F.jab.value.trim(),subbag:F.sub.value.trim(),divisi:F.div.value.trim()});
-  stepDone();
-  showToast('Data pegawai tersimpan.');
-});
-
-/* ================== AKTIVITAS HARIAN (langkah 2) ================== */
+function valOf(key){
+  const m=MODE[key];
+  return(mState[key]?m.txt.value:m.sel.value).trim();
+}
 function syncHariLabel(){$('#inHari').value=$('#inTanggal').value?namaHari($('#inTanggal').value):'—';}
  $('#inTanggal').addEventListener('change',()=>{syncHariLabel();defaultJam();});
  $$('#formHarian input, #formHarian select, #formHarian textarea').forEach(el=>el.addEventListener('input',()=>el.classList.remove('err')));
@@ -547,63 +796,66 @@ function syncHariLabel(){$('#inHari').value=$('#inTanggal').value?namaHari($('#i
 function stampNow(){
   const st=$('#stamp');
   st.classList.remove('show');st.style.transition='';st.style.opacity='';
-  void st.offsetWidth;
-  st.classList.add('show');
+  void st.offsetWidth;st.classList.add('show');
   setTimeout(()=>{st.style.transition='opacity .5s ease';st.style.opacity='0';},1000);
   setTimeout(()=>{st.classList.remove('show');st.style.transition='';st.style.opacity='';},1550);
 }
 
  $('#formHarian').addEventListener('submit',e=>{
   e.preventDefault();
-  const need=[['#inTanggal',1],['#inJamMulai',1],['#inTupoksi',1],['#inRHK',1],['#inTugas',1],['#inRealisasi',1]];
+  const need=[['#inTanggal',1],['#inJamMulai',1],['#inRealisasi',1]];
   let ok=true;
   need.forEach(([id])=>{const el=$(id);el.classList.remove('err');if(!el.value.trim()){el.classList.add('err');ok=false;}});
+  const tup=valOf('tupoksi'),rhk=valOf('rhk'),tugas=valOf('tugas');
+  [['tupoksi',tup],['rhk',rhk],['tugas',tugas]].forEach(([k,v])=>{
+    const m=MODE[k],el=mState[k]?m.txt:m.sel;
+    el.classList.remove('err');
+    if(!v){el.classList.add('err');ok=false;}
+  });
   if(!ok){showToast('Lengkapi isian yang ditandai merah.',false);return;}
   const js=$('#inJamSelesai').value;
-  if(js && jamToMin(js)<=jamToMin($('#inJamMulai').value)){
-    $('#inJamSelesai').classList.add('err');showToast('Jam selesai harus lebih besar dari jam mulai.',false);return;
-  }
-  const p=getPegawai()||{nama:'—',nip:'—',jabatan:'',subbag:'',divisi:''};
+  if(js&&jamToMin(js)<=jamToMin($('#inJamMulai').value)){$('#inJamSelesai').classList.add('err');showToast('Jam selesai harus lebih besar dari jam mulai.',false);return;}
+  const p=currentPegawai||{nama:'—',nip:'—',jabatan:'',subbag:'',divisi:''};
   const entry={
-    id:Date.now()+'-'+Math.random().toString(36).slice(2,7), createdAt:Date.now(),
-    tanggal:$('#inTanggal').value, jamMulai:$('#inJamMulai').value, jamSelesai:js,
-    tupoksi:$('#inTupoksi').value.trim(), rhk:$('#inRHK').value.trim(), tugas:$('#inTugas').value.trim(),
-    kategori:$('#inKategori').value, keterangan:$('#inKet').value.trim(), realisasi:$('#inRealisasi').value.trim(),
+    id:Date.now()+'-'+Math.random().toString(36).slice(2,7),createdAt:Date.now(),
+    tanggal:$('#inTanggal').value,jamMulai:$('#inJamMulai').value,jamSelesai:js,
+    tupoksi:tup,rhk:rhk,tugas:tugas,
+    kategori:$('#inKategori').value,keterangan:$('#inKet').value.trim(),realisasi:$('#inRealisasi').value.trim(),
     pegawai:{nama:p.nama,nip:p.nip,jabatan:p.jabatan||'',subbag:p.subbag||'',divisi:p.divisi||''}
   };
-  const arr=getEntries();arr.push(entry);saveEntries(arr);
+  const arr=getEntries();arr.push(entry);
+  localStorage.setItem(LS_ENTRIES,JSON.stringify(arr));
   stampNow();
   showToast('Aktivitas tercatat. Jangan lupa salin ke e-Kinerja BKN.');
-  // Reset sebagian: tupoksi, RHK, kategori, tanggal dipertahankan karena biasanya sama
-  $('#inTugas').value='';$('#inKet').value='';$('#inRealisasi').value='';
+  $('#txtTugas').value='';$('#inRealisasi').value='';$('#inKet').value='';
   defaultJam();
   renderDashboard();renderInfo();
-  $('#inTugas').focus();
 });
 
  $('#btnResetHarian').onclick=()=>{
-  $('#inTugas').value='';$('#inKet').value='';$('#inRealisasi').value='';
+  $('#txtTugas').value='';$('#inRealisasi').value='';$('#inKet').value='';
   defaultJam();showToast('Isian dibersihkan.');
 };
 
 /* ================== DASHBOARD ================== */
+const getEntries=()=>{try{return JSON.parse(localStorage.getItem(LS_ENTRIES))||[]}catch(_){return[]}};
 const sortDesc=a=>[...a].sort((x,y)=>x.tanggal===y.tanggal?y.createdAt-x.createdAt:(x.tanggal<y.tanggal?1:-1));
 
 function renderDashboard(){
-  const p=getPegawai(), list=getEntries(), box=$('#dashId');
+  const p=currentPegawai||lastPegawai(),list=getEntries(),box=$('#dashId');
   if(p){
     box.innerHTML=`<div class="idcard">
-      <div class="idcard-top"><i data-lucide="user"></i> IDENTITAS PELAPOR</div>
+      <div class="idcard-top"><i data-lucide="user"></i> PELAPOR AKTIF</div>
       <div class="idcard-name">${esc(p.nama)}</div>
       <div class="idcard-nip">NIP ${esc(p.nip)}</div>
       <div class="idcard-role">${esc([p.jabatan,p.subbag,p.divisi].filter(Boolean).join(' · '))}</div>
-      <button class="btn btn-sm" data-edit="1"><i data-lucide="pencil"></i> Ubah identitas</button>
+      <button class="btn btn-sm" data-edit="1"><i data-lucide="repeat"></i> Ganti pegawai</button>
     </div>`;
   }else{
     box.innerHTML=`<div class="empty" style="margin-bottom:20px">
-      <i data-lucide="user"></i><b>Belum ada identitas pegawai</b>
-      Mulai dengan mengisi data diri pada menu Absensi.<br>
-      <button class="btn btn-primary" data-goabsen="1">Isi Data Pegawai <i data-lucide="arrow-right"></i></button>
+      <i data-lucide="user"></i><b>Belum ada pegawai terpilih</b>
+      Pilih nama Anda pada menu Absensi.<br>
+      <button class="btn btn-primary" data-goabsen="1">Mulai Absensi <i data-lucide="arrow-right"></i></button>
     </div>`;
   }
   const today=todayISO();
@@ -626,13 +878,13 @@ function renderDashboard(){
         <div class="recent-body">
           <p class="recent-task">${esc(e.tugas)}</p>
           <p class="recent-meta">${jam} · ${esc(e.tupoksi)}${e.realisasi?' · '+esc(e.realisasi):''}</p>
+          ${e.pegawai&&e.pegawai.nama?`<p class="recent-who">${esc(e.pegawai.nama)}</p>`:''}
         </div>
         <span class="badge ${e.kategori==='trajectory'?'b-traj':'b-non'}">${e.kategori==='trajectory'?'Trajectory':'Non-Traj'}</span>
       </div>`;}).join('');
   }
   refreshIcons();
 }
-// tombol dinamis di dashboard
  $('#dashId').addEventListener('click',e=>{
   if(e.target.closest('[data-edit]')){showTab('absensi');openPegawaiPanel();}
   if(e.target.closest('[data-goabsen]'))showTab('absensi');
@@ -640,13 +892,18 @@ function renderDashboard(){
 
 /* ================== INFO ABSENSI ================== */
 function renderInfo(){
+  // filter pegawai options
+  const fp=$('#fPegawai'),cur=fp.value;
+  const names=[...new Set(getEntries().map(e=>e.pegawai&&e.pegawai.nama).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'id'));
+  fp.innerHTML='<option value="">Semua pegawai</option>'+names.map(n=>`<option${n===cur?' selected':''}>${esc(n)}</option>`).join('');
+
   const q=($('#fSearch').value||'').toLowerCase().trim();
-  const kat=$('#fKategori').value, tgl=$('#fTanggal').value;
+  const kat=$('#fKategori').value,tgl=$('#fTanggal').value,peg=fp.value;
   let list=getEntries();const total=list.length;
-  if(q)list=list.filter(e=>[e.tugas,e.tupoksi,e.rhk,e.keterangan,e.realisasi,e.pegawai&&e.pegawai.nama]
-    .map(x=>String(x||'').toLowerCase()).some(s=>s.includes(q)));
+  if(q)list=list.filter(e=>[e.tugas,e.tupoksi,e.rhk,e.keterangan,e.realisasi].map(x=>String(x||'').toLowerCase()).some(s=>s.includes(q)));
   if(kat)list=list.filter(e=>e.kategori===kat);
   if(tgl)list=list.filter(e=>e.tanggal===tgl);
+  if(peg)list=list.filter(e=>e.pegawai&&e.pegawai.nama===peg);
   list=sortDesc(list);
   $('#infoCount').textContent=`Menampilkan ${list.length} dari ${total} catatan.`;
   const has=list.length>0;
@@ -657,37 +914,36 @@ function renderInfo(){
     const jam=e.jamSelesai?`${e.jamMulai} – ${e.jamSelesai}`:e.jamMulai;
     return `<tr>
       <td class="td-idx">${String(i+1).padStart(2,'0')}</td>
-      <td class="td-date"><b>${fmtShort(e.tanggal)}</b>
+      <td><b>${fmtShort(e.tanggal)}</b>
         <div class="td-sub">${namaHari(e.tanggal)}</div>
         <div class="td-sub mono">${jam}</div></td>
+      <td><b>${esc(p.nama||'—')}</b>
+        ${p.subbag?`<div class="td-sub">${esc(p.subbag)}</div>`:''}</td>
       <td class="td-task">${esc(e.tugas)}
         <div class="td-sub">${esc(e.tupoksi)}${e.rhk?` · RHK: ${esc(e.rhk)}`:''}</div>
-        ${p.nama?`<div class="td-sub">${esc(p.nama)}${p.subbag?' — '+esc(p.subbag):''}</div>`:''}
         ${e.keterangan?`<div class="td-sub"><em>${esc(e.keterangan)}</em></div>`:''}</td>
       <td><span class="badge ${e.kategori==='trajectory'?'b-traj':'b-non'}">${e.kategori==='trajectory'?'Trajectory':'Non-Trajectory'}</span></td>
       <td>${esc(e.realisasi)}</td>
-      <td><button class="icon-btn" data-del="${e.id}" title="Hapus catatan"><i data-lucide="trash-2"></i></button></td>
+      <td><button class="icon-btn" data-del="${e.id}" title="Hapus"><i data-lucide="trash-2"></i></button></td>
     </tr>`;}).join('');
   refreshIcons();
 }
-['#fSearch','#fKategori','#fTanggal'].forEach(id=>$(id).addEventListener('input',renderInfo));
+['#fSearch','#fKategori','#fTanggal','#fPegawai'].forEach(id=>$(id).addEventListener('input',renderInfo));
 
  $('#infoBody').addEventListener('click',e=>{
   const b=e.target.closest('[data-del]');if(!b)return;
   const en=getEntries().find(x=>x.id===b.dataset.del);if(!en)return;
-  openConfirm('Hapus catatan ini?',
-    `"${en.tugas.slice(0,80)}" pada ${fmtFull(en.tanggal)} akan dihapus permanen dari perangkat ini.`,
-    ()=>{saveEntries(getEntries().filter(x=>x.id!==en.id));renderInfo();renderDashboard();showToast('Catatan dihapus.',false);});
+  openConfirm('Hapus catatan ini?',`"${en.tugas.slice(0,80)}" pada ${fmtFull(en.tanggal)} akan dihapus permanen.`,
+    ()=>{localStorage.setItem(LS_ENTRIES,JSON.stringify(getEntries().filter(x=>x.id!==en.id)));renderInfo();renderDashboard();showToast('Catatan dihapus.',false);});
 });
  $('#btnHapusSemua').onclick=()=>{
   const n=getEntries().length;
   if(!n){showToast('Belum ada data untuk dihapus.',false);return;}
-  openConfirm('Hapus SEMUA catatan?',
-    `Seluruh ${n} catatan akan dihapus dari perangkat ini. Pertimbangkan mengunduh CSV terlebih dulu.`,
-    ()=>{saveEntries([]);renderInfo();renderDashboard();showToast('Semua catatan dihapus.',false);});
+  openConfirm('Hapus SEMUA catatan?',`Seluruh ${n} catatan akan dihapus dari perangkat ini. Pertimbangkan unduh CSV dulu.`,
+    ()=>{localStorage.setItem(LS_ENTRIES,'[]');renderInfo();renderDashboard();showToast('Semua catatan dihapus.',false);});
 };
 
-/* ================== EKSPOR & CETAK ================== */
+/* ================== EKSPOR ================== */
  $('#btnCSV').onclick=()=>{
   const list=sortDesc(getEntries());
   if(!list.length){showToast('Belum ada data untuk diekspor.',false);return;}
@@ -696,19 +952,147 @@ function renderInfo(){
   const csv='\uFEFF'+[head,...rows].map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\r\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
-  a.download='catatan-kinerja-'+todayISO()+'.csv';a.click();
+  a.download='absensi-kinerja-'+todayISO()+'.csv';a.click();
   URL.revokeObjectURL(a.href);
   showToast('CSV berhasil diunduh.');
 };
  $('#btnPrint').onclick=()=>window.print();
+
+/* ================== KELOLA DATA ================== */
+function renderKelola(){
+  const s=$('#srcStatus');
+  const iconRepo='<i data-lucide="git-branch" style="width:14px;height:14px;color:var(--green)"></i>';
+  const iconLocal='<i data-lucide="monitor" style="width:14px;height:14px;color:var(--terra)"></i>';
+  s.innerHTML=(masterSource==='repo'?iconRepo+'<b>Repo (data.json)</b>':iconLocal+'<b>Browser ini</b>')+
+    `<span class="dot ${MASTER.pegawai.length&&masterSource==='repo'?'on':(masterSource==='repo'?'on':'off')}"></span>`+
+    `<span>${MASTER.pegawai.length} pegawai · ${MASTER.pekerjaan.length} kombinasi tupoksi/RHK terdaftar</span>`;
+  refreshIcons();
+  updateJsonOut();
+}
+function updateJsonOut(){
+  const box=$('#jsonOut');
+  if(!MASTER.pegawai.length&&!MASTER.pekerjaan.length){
+    box.innerHTML='<pre>— belum ada data —</pre>';return;
+  }
+  box.innerHTML=`<pre>${esc(JSON.stringify({pegawai:MASTER.pegawai,pekerjaan:MASTER.pekerjaan},null,2))}</pre>`;
+}
+ $('#btnCopyJson').onclick=async()=>{
+  if(!MASTER.pegawai.length&&!MASTER.pekerjaan.length){showToast('Belum ada data untuk disalin.',false);return;}
+  const txt=JSON.stringify({pegawai:MASTER.pegawai,pekerjaan:MASTER.pekerjaan},null,2);
+  try{await navigator.clipboard.writeText(txt);showToast('JSON tersalin — tempel ke file data.json di GitHub.');}
+  catch(_){showToast('Gagal otomatis — salin manual dari kotak JSON.',false);}
+};
+
+/* template CSV */
+function downloadTpl(name,rows){
+  const csv='\uFEFF'+rows.map(r=>r.join(';')).join('\r\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download=name;a.click();URL.revokeObjectURL(a.href);
+}
+ $('#btnTplPegawai').onclick=()=>downloadTpl('template-pegawai.csv',[
+  ['nama','nip','jabatan','subbag','divisi'],
+  ['Budi Santoso','198501012010011001','Staf Administrasi','Subbag Keuangan','Sekretariat'],
+  ['Siti Aminah','199203152015022003','Analis Kepegawaian','Subbag Kepegawaian','Sekretariat']]);
+ $('#btnTplPekerjaan').onclick=()=>downloadTpl('template-pekerjaan.csv',[
+  ['tupoksi','rhk','tugas'],
+  ['Pelayanan Administrasi Perkantoran','Layanan administrasi bulanan','Mengetik surat masuk/keluar'],
+  ['Pelayanan Administrasi Perkantoran','Layanan administrasi bulanan','Mengarsipkan dokumen'],
+  ['Penyusunan Laporan dan Dokumen','Laporan triwulan','Menyusun draf laporan']]);
+
+/* dropzone generik */
+function wireUpload(dzId,fileId,pasteId,prevId,cntId,applyId,transform){
+  const dz=$(dzId),file=$(fileId),paste=$(pasteId),prev=$(prevId),cnt=$(cntId),apply=$(applyId);
+  let parsed=[];
+  dz.addEventListener('click',()=>file.click());
+  dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
+  dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
+  dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');
+    if(e.dataTransfer.files.length)readFile(e.dataTransfer.files[0]);});
+  file.addEventListener('change',()=>{if(file.files.length)readFile(file.files[0]);});
+  function readFile(f){
+    const r=new FileReader();
+    r.onload=()=>{paste.value=r.result;doParse();};
+    r.readAsText(f);
+  }
+  paste.addEventListener('input',doParse);
+  function doParse(){
+    parsed=transform(smartParse(paste.value));
+    showPreview();
+  }
+  function showPreview(){
+    if(!parsed.length){prev.hidden=true;cnt.textContent='';apply.hidden=true;return;}
+    prev.hidden=false;apply.hidden=false;
+    prev.innerHTML=buildPreview();
+    cnt.textContent=parsed.length+' baris terbaca.';
+    refreshIcons();
+  }
+  function buildPreview(){
+    if(dzId==='#dzPegawai'){
+      return `<div class="table-scroll" style="max-height:220px;overflow:auto;border:1.5px solid var(--ink);border-radius:8px;margin-top:14px">
+      <table class="tbl-mini"><thead><tr><th>Nama</th><th>NIP</th><th>Jabatan</th><th>Subbag</th><th>Divisi</th></tr></thead><tbody>
+      ${parsed.map(p=>`<tr><td><b>${esc(p.nama)}</b></td><td class="mono">${esc(p.nip)}</td><td>${esc(p.jabatan)}</td><td>${esc(p.subbag)}</td><td>${esc(p.divisi)}</td></tr>`).join('')}
+      </tbody></table></div>`;
+    }
+    return `<div class="table-scroll" style="max-height:220px;overflow:auto;border:1.5px solid var(--ink);border-radius:8px;margin-top:14px">
+    <table class="tbl-mini"><thead><tr><th>Tupoksi</th><th>RHK</th><th>Jumlah Tugas</th><th>Contoh Tugas</th></tr></thead><tbody>
+    ${parsed.map(p=>`<tr><td>${esc(p.tupoksi)}</td><td>${esc(p.rhk)}</td><td><b>${p.tugas.length}</b></td><td>${esc(p.tugas.slice(0,2).join('; '))}${p.tugas.length>2?'…':''}</td></tr>`).join('')}
+    </tbody></table></div>`;
+  }
+  apply.addEventListener('click',()=>{
+    if(!parsed.length){showToast('Tidak ada data untuk diterapkan.',false);return;}
+    if(dzId==='#dzPegawai'){
+      // gabung: timpa berdasarkan nama
+      const map=new Map(MASTER.pegawai.map(p=>[p.nama,p]));
+      parsed.forEach(p=>map.set(p.nama,p));
+      MASTER.pegawai=[...map.values()];
+    }else{
+      const map=new Map(MASTER.pekerjaan.map(p=>[p.tupoksi+'||'+p.rhk,p]));
+      parsed.forEach(p=>{
+        const k=p.tupoksi+'||'+p.rhk;
+        if(map.has(k)){const old=map.get(k);p.tugas.forEach(t=>{if(!old.tugas.includes(t))old.tugas.push(t);});}
+        else map.set(k,p);
+      });
+      MASTER.pekerjaan=[...map.values()];
+    }
+    saveMasterLocal();
+    renderKelola();fillTupoksiOptions();fillSelPegawai();
+    $('#pegawaiCountTag').textContent=MASTER.pegawai.length+' pegawai terdaftar';
+    showToast(dzId==='#dzPegawai'?'Data pegawai diterapkan.':'Data pekerjaan diterapkan.');
+  });
+  $(pasteId.replace('paste','edit')+'Pegawai')?.addEventListener?.('click',()=>{});
+}
+wireUpload('#dzPegawai','#filePegawai','#pastePegawai','#prevPegawai','#cntPegawai','#btnApplyPegawai',rowsToPegawai);
+wireUpload('#dzPekerjaan','#filePekerjaan','#pastePekerjaan','#prevPekerjaan','#cntPekerjaan','#btnApplyPekerjaan',rowsToPekerjaan);
+
+/* tombol "Tempel Manual" */
+ $('#btnEditPegawai').onclick=()=>{
+  const p=$('#pastePegawai');p.hidden=!p.hidden;
+  if(!p.hidden){p.value=p.value||'nama;nip;jabatan;subbag;divisi\n';p.focus();}
+};
+ $('#btnEditPekerjaan').onclick=()=>{
+  const p=$('#pastePekerjaan');p.hidden=!p.hidden;
+  if(!p.hidden){p.value=p.value||'tupoksi;rhk;tugas\n';p.focus();}
+};
 
 /* ================== INISIALISASI ================== */
  $$('.tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
 buildJam();
  $('#inTanggal').value=todayISO();
 syncHariLabel();defaultJam();
-if(getPegawai())stepDone(false);else openPegawaiPanel();
-updateKop();renderDashboard();renderInfo();
+
+(async()=>{
+  await initMaster();
+  $('#pegawaiCountTag').textContent=MASTER.pegawai.length?MASTER.pegawai.length+' pegawai terdaftar':'';
+  fillTupoksiOptions();
+  fillSelPegawai();
+  if(MASTER.pekerjaan.length&&hasOptions('tupoksi'))setMode('tupoksi',false);else setMode('tupoksi',true);
+  fillRHKOptions();
+  renderKelola();
+  if(lastPegawai())stepDone(false);else openPegawaiPanel();
+  renderDashboard();renderInfo();
+})();
+
 tick();setInterval(tick,1000);
 refreshIcons();
 </script>

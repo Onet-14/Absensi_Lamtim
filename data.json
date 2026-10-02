@@ -1,0 +1,33 @@
+{
+  "pegawai": [
+    {
+      "nama": "Ivan Arief Imansyah, S.A.P.",
+      "nip": "199512252024211019",
+      "jabatan": "Staf Pelaksana",
+      "subbag": "Perencanaan, Data dan Informasi",
+      "divisi": "Data dan Informasi"
+    }
+  ],
+  "pekerjaan": [
+    {
+      "tupoksi": "Fasilitasi Pendataan DPT Berkelanjutan",
+      "rhk": "Terlaksananya Fasilitasi Pendataan DPT Berkelanjutan",
+      "tugas": []
+    },
+    {
+      "tupoksi": "Penyediaan Data Pemilih Mutakhir",
+      "rhk": "Tersedianya Data dan Informasi Pemilih yang Mutakhir",
+      "tugas": []
+    },
+    {
+      "tupoksi": "Validitas Data Pemilih",
+      "rhk": "Tersedianya data pemilih yang valid sesuai ketentuan yang berlaku",
+      "tugas": []
+    },
+    {
+      "tupoksi": "Persiapan Pendataan DPT",
+      "rhk": "Terlaksananya Persiapan Pendataan DPT Berkelanjutan",
+      "tugas": []
+    }
+  ]
+}

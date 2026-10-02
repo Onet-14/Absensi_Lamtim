@@ -112,6 +112,10 @@ body{font-family:var(--sans);color:var(--ink);background-color:var(--paper);
   border:1.5px solid var(--ink);border-radius:999px;padding:3px 10px;white-space:nowrap}
 .b-traj{background:var(--green-soft);color:var(--green)}
 .b-non{background:var(--terra-soft);color:var(--terra)}
+.link-bukti{display:inline-flex;align-items:center;gap:5px;font:700 12px var(--sans);color:var(--green);
+  text-decoration:none;border:1.5px solid var(--ink);border-radius:999px;padding:3px 11px;background:var(--green-soft);margin-top:6px}
+.link-bukti svg{width:12px;height:12px}
+.link-bukti:hover{background:var(--green);color:#F4F0E6}
 
 .stepper{display:flex;align-items:stretch;margin-bottom:22px}
 .step{display:flex;align-items:center;gap:11px;border:1.5px solid var(--ink);background:var(--card);padding:10px 18px 10px 12px;border-radius:9px}
@@ -376,6 +380,9 @@ footer .mono{font-size:11px}
             </div>
             <div class="f-12"><label for="inKet">Keterangan <span class="opt">(opsional)</span></label>
               <input id="inKet" placeholder="Catatan tambahan, hambatan, atau tindak lanjut"></div>
+            <div class="f-12"><label for="inBukti">Link Bukti Dukung <span class="opt">(opsional)</span></label>
+              <input type="url" id="inBukti" placeholder="https://drive.google.com/... atau tautan bukti lainnya">
+              <p class="hint">Tempel tautan Google Drive, foto, dokumen, atau bukti pendukung lainnya.</p></div>
             <div class="form-actions">
               <span class="note">Setelah tersimpan, data muncul di menu <b>Info Absensi</b>.</span>
               <button type="button" class="btn btn-ghost" id="btnResetHarian">Bersihkan</button>
@@ -664,7 +671,6 @@ function fillSelPegawai(){
 }
 function setManualPegawai(manual){
   ['fNama','fNip','fJab','fSub','fDiv'].forEach(id=>$('#'+id).readOnly=!manual);
-  $('#autoNote').hidden=!manual?false:true;
   $('#autoNote').hidden=manual; // tampil hanya saat auto
   refreshIcons();
 }
@@ -689,7 +695,6 @@ FP.nip.addEventListener('input',()=>{FP.nip.value=FP.nip.value.replace(/\D/g,'')
 
  $('#formPegawai').addEventListener('submit',e=>{
   e.preventDefault();
-  const isManual=$('#selPegawai').value==='__manual';
   let ok=true;
   [FP.nama,FP.nip,FP.jab].forEach(el=>{el.classList.remove('err');if(!el.value.trim()){el.classList.add('err');ok=false;}});
   if(!ok){showToast('Lengkapi nama, NIP, dan jabatan dulu ya.',false);return;}
@@ -758,7 +763,7 @@ function setMode(key,manual){
 }
 function hasOptions(key){
   const m=MODE[key];
-  return m.sel.options.length>(key==='tugas'?1:2); // lebih dari placeholder saja
+  return m.sel.options.length>(key==='tugas'?1:2);
 }
 function fillTupoksiOptions(){
   const set=[...new Set(MASTER.pekerjaan.map(p=>p.tupoksi))].sort((a,b)=>a.localeCompare(b,'id'));
@@ -815,25 +820,29 @@ function stampNow(){
   if(!ok){showToast('Lengkapi isian yang ditandai merah.',false);return;}
   const js=$('#inJamSelesai').value;
   if(js&&jamToMin(js)<=jamToMin($('#inJamMulai').value)){$('#inJamSelesai').classList.add('err');showToast('Jam selesai harus lebih besar dari jam mulai.',false);return;}
+  // Link bukti dukung: opsional, otomatis diberi https:// jika belum ada
+  let bukti=$('#inBukti').value.trim();
+  if(bukti&&!/^https?:\/\//i.test(bukti))bukti='https://'+bukti;
   const p=currentPegawai||{nama:'—',nip:'—',jabatan:'',subbag:'',divisi:''};
   const entry={
     id:Date.now()+'-'+Math.random().toString(36).slice(2,7),createdAt:Date.now(),
     tanggal:$('#inTanggal').value,jamMulai:$('#inJamMulai').value,jamSelesai:js,
     tupoksi:tup,rhk:rhk,tugas:tugas,
     kategori:$('#inKategori').value,keterangan:$('#inKet').value.trim(),realisasi:$('#inRealisasi').value.trim(),
+    bukti:bukti,
     pegawai:{nama:p.nama,nip:p.nip,jabatan:p.jabatan||'',subbag:p.subbag||'',divisi:p.divisi||''}
   };
   const arr=getEntries();arr.push(entry);
   localStorage.setItem(LS_ENTRIES,JSON.stringify(arr));
   stampNow();
   showToast('Aktivitas tercatat. Jangan lupa salin ke e-Kinerja BKN.');
-  $('#txtTugas').value='';$('#inRealisasi').value='';$('#inKet').value='';
+  $('#txtTugas').value='';$('#inRealisasi').value='';$('#inKet').value='';$('#inBukti').value='';
   defaultJam();
   renderDashboard();renderInfo();
 });
 
  $('#btnResetHarian').onclick=()=>{
-  $('#txtTugas').value='';$('#inRealisasi').value='';$('#inKet').value='';
+  $('#txtTugas').value='';$('#inRealisasi').value='';$('#inKet').value='';$('#inBukti').value='';
   defaultJam();showToast('Isian dibersihkan.');
 };
 
@@ -892,7 +901,6 @@ function renderDashboard(){
 
 /* ================== INFO ABSENSI ================== */
 function renderInfo(){
-  // filter pegawai options
   const fp=$('#fPegawai'),cur=fp.value;
   const names=[...new Set(getEntries().map(e=>e.pegawai&&e.pegawai.nama).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'id'));
   fp.innerHTML='<option value="">Semua pegawai</option>'+names.map(n=>`<option${n===cur?' selected':''}>${esc(n)}</option>`).join('');
@@ -900,7 +908,7 @@ function renderInfo(){
   const q=($('#fSearch').value||'').toLowerCase().trim();
   const kat=$('#fKategori').value,tgl=$('#fTanggal').value,peg=fp.value;
   let list=getEntries();const total=list.length;
-  if(q)list=list.filter(e=>[e.tugas,e.tupoksi,e.rhk,e.keterangan,e.realisasi].map(x=>String(x||'').toLowerCase()).some(s=>s.includes(q)));
+  if(q)list=list.filter(e=>[e.tugas,e.tupoksi,e.rhk,e.keterangan,e.realisasi,e.bukti].map(x=>String(x||'').toLowerCase()).some(s=>s.includes(q)));
   if(kat)list=list.filter(e=>e.kategori===kat);
   if(tgl)list=list.filter(e=>e.tanggal===tgl);
   if(peg)list=list.filter(e=>e.pegawai&&e.pegawai.nama===peg);
@@ -921,7 +929,8 @@ function renderInfo(){
         ${p.subbag?`<div class="td-sub">${esc(p.subbag)}</div>`:''}</td>
       <td class="td-task">${esc(e.tugas)}
         <div class="td-sub">${esc(e.tupoksi)}${e.rhk?` · RHK: ${esc(e.rhk)}`:''}</div>
-        ${e.keterangan?`<div class="td-sub"><em>${esc(e.keterangan)}</em></div>`:''}</td>
+        ${e.keterangan?`<div class="td-sub"><em>${esc(e.keterangan)}</em></div>`:''}
+        ${e.bukti?`<a class="link-bukti" href="${esc(e.bukti)}" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Bukti Dukung</a>`:''}</td>
       <td><span class="badge ${e.kategori==='trajectory'?'b-traj':'b-non'}">${e.kategori==='trajectory'?'Trajectory':'Non-Trajectory'}</span></td>
       <td>${esc(e.realisasi)}</td>
       <td><button class="icon-btn" data-del="${e.id}" title="Hapus"><i data-lucide="trash-2"></i></button></td>
@@ -947,8 +956,8 @@ function renderInfo(){
  $('#btnCSV').onclick=()=>{
   const list=sortDesc(getEntries());
   if(!list.length){showToast('Belum ada data untuk diekspor.',false);return;}
-  const head=['Nama','NIP','Jabatan','Subbag','Divisi','Tanggal','Hari','Jam Mulai','Jam Selesai','Tupoksi','Rencana Hasil Kerja','Tugas Harian','Kategori','Keterangan','Realisasi'];
-  const rows=list.map(e=>{const p=e.pegawai||{};return[p.nama,p.nip,p.jabatan,p.subbag,p.divisi,e.tanggal,namaHari(e.tanggal),e.jamMulai,e.jamSelesai,e.tupoksi,e.rhk,e.tugas,e.kategori==='trajectory'?'Trajectory':'Non-Trajectory',e.keterangan,e.realisasi];});
+  const head=['Nama','NIP','Jabatan','Subbag','Divisi','Tanggal','Hari','Jam Mulai','Jam Selesai','Tupoksi','Rencana Hasil Kerja','Tugas Harian','Kategori','Keterangan','Realisasi','Link Bukti Dukung'];
+  const rows=list.map(e=>{const p=e.pegawai||{};return[p.nama,p.nip,p.jabatan,p.subbag,p.divisi,e.tanggal,namaHari(e.tanggal),e.jamMulai,e.jamSelesai,e.tupoksi,e.rhk,e.tugas,e.kategori==='trajectory'?'Trajectory':'Non-Trajectory',e.keterangan,e.realisasi,e.bukti||''];});
   const csv='\uFEFF'+[head,...rows].map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\r\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
@@ -964,7 +973,7 @@ function renderKelola(){
   const iconRepo='<i data-lucide="git-branch" style="width:14px;height:14px;color:var(--green)"></i>';
   const iconLocal='<i data-lucide="monitor" style="width:14px;height:14px;color:var(--terra)"></i>';
   s.innerHTML=(masterSource==='repo'?iconRepo+'<b>Repo (data.json)</b>':iconLocal+'<b>Browser ini</b>')+
-    `<span class="dot ${MASTER.pegawai.length&&masterSource==='repo'?'on':(masterSource==='repo'?'on':'off')}"></span>`+
+    `<span class="dot ${masterSource==='repo'?'on':'off'}"></span>`+
     `<span>${MASTER.pegawai.length} pegawai · ${MASTER.pekerjaan.length} kombinasi tupoksi/RHK terdaftar</span>`;
   refreshIcons();
   updateJsonOut();
@@ -983,7 +992,6 @@ function updateJsonOut(){
   catch(_){showToast('Gagal otomatis — salin manual dari kotak JSON.',false);}
 };
 
-/* template CSV */
 function downloadTpl(name,rows){
   const csv='\uFEFF'+rows.map(r=>r.join(';')).join('\r\n');
   const a=document.createElement('a');
@@ -1000,7 +1008,6 @@ function downloadTpl(name,rows){
   ['Pelayanan Administrasi Perkantoran','Layanan administrasi bulanan','Mengarsipkan dokumen'],
   ['Penyusunan Laporan dan Dokumen','Laporan triwulan','Menyusun draf laporan']]);
 
-/* dropzone generik */
 function wireUpload(dzId,fileId,pasteId,prevId,cntId,applyId,transform){
   const dz=$(dzId),file=$(fileId),paste=$(pasteId),prev=$(prevId),cnt=$(cntId),apply=$(applyId);
   let parsed=[];
@@ -1042,7 +1049,6 @@ function wireUpload(dzId,fileId,pasteId,prevId,cntId,applyId,transform){
   apply.addEventListener('click',()=>{
     if(!parsed.length){showToast('Tidak ada data untuk diterapkan.',false);return;}
     if(dzId==='#dzPegawai'){
-      // gabung: timpa berdasarkan nama
       const map=new Map(MASTER.pegawai.map(p=>[p.nama,p]));
       parsed.forEach(p=>map.set(p.nama,p));
       MASTER.pegawai=[...map.values()];
@@ -1060,12 +1066,10 @@ function wireUpload(dzId,fileId,pasteId,prevId,cntId,applyId,transform){
     $('#pegawaiCountTag').textContent=MASTER.pegawai.length+' pegawai terdaftar';
     showToast(dzId==='#dzPegawai'?'Data pegawai diterapkan.':'Data pekerjaan diterapkan.');
   });
-  $(pasteId.replace('paste','edit')+'Pegawai')?.addEventListener?.('click',()=>{});
 }
 wireUpload('#dzPegawai','#filePegawai','#pastePegawai','#prevPegawai','#cntPegawai','#btnApplyPegawai',rowsToPegawai);
 wireUpload('#dzPekerjaan','#filePekerjaan','#pastePekerjaan','#prevPekerjaan','#cntPekerjaan','#btnApplyPekerjaan',rowsToPekerjaan);
 
-/* tombol "Tempel Manual" */
  $('#btnEditPegawai').onclick=()=>{
   const p=$('#pastePegawai');p.hidden=!p.hidden;
   if(!p.hidden){p.value=p.value||'nama;nip;jabatan;subbag;divisi\n';p.focus();}
